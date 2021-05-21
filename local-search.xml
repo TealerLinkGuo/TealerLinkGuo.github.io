@@ -4,11 +4,11 @@
   
   
   <entry>
-    <title>PLC</title>
-    <link href="/2021/05/20/PLC/"/>
-    <url>/2021/05/20/PLC/</url>
+    <title>WPF实现双击事件</title>
+    <link href="/2021/05/20/WPF%E5%AE%9E%E7%8E%B0%E5%8F%8C%E5%87%BB%E4%BA%8B%E4%BB%B6/"/>
+    <url>/2021/05/20/WPF%E5%AE%9E%E7%8E%B0%E5%8F%8C%E5%87%BB%E4%BA%8B%E4%BB%B6/</url>
     
-    <content type="html"><![CDATA[<p>PLC PLC PLC</p>]]></content>
+    <content type="html"><![CDATA[<p>WPF中设置点击事件非常方便，但是不论是MouseClick还是PreviewMouseClick都没有提供双击事件的方法。</p><p>看了微软的文档得知有两种方法:</p><ul><li>使用MouseBinding</li><li>使用MouseButtonEventArgs</li></ul><blockquote><p>使用MouseBinding给Rect设置双击事件</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs C#">// 双击事件<br>Rectangle r = new Rectangle();<br>MouseBinding rectMB = new MouseBinding();<br>rectMB.MouseAction = MouseAction.LeftDoubleClick; // MouseAction<br>rectMB.Command = ... // 设置响应事件<br>r.InputBindings.Add(rectMB);<br></code></pre></td></tr></table></figure><blockquote><p>使用MouseButtonEventArgs</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs C#">private void MouseDoubleClick(object sender, MouseButtonEventArgs e)<br>&#123;<br>    if(e.ClickCount == 2)<br>    &#123;<br>        ... // 响应事件<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
     
     
     
